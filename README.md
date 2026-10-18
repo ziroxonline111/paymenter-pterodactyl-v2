@@ -78,7 +78,7 @@ The same team makes **Karelia Bridge**, an add-on for Paymenter and Pterodactyl 
 - **Billing inside the panel.** A *Billing* page on every server shows the next due date, the price and unpaid invoices with a *Pay now* button.
 - **Warnings where customers look.** A banner above the console before an invoice is due and when the server is about to be suspended, and a *Due in 2 d* badge on the server list.
 
-It uses Pterodactyl 2.0's official extension system, so no panel files are edited. Coming soon: watch this repository's releases to hear when it is out.
+It uses Pterodactyl 2.0's official extension system, so no panel files are edited. Details and download: https://pureimage.gumroad.com/l/karelia-bridge
 
 ## License
 
