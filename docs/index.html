@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pterodactyl 2.0 for Paymenter: fix "api/application/nests could not be found"</title>
+<meta name="description" content="Free Paymenter server extension for Pterodactyl 2.0 and 1.x. Fixes 'The route api/application/nests could not be found' after upgrading the panel. Same settings as the built-in extension, one command to switch.">
+<link rel="canonical" href="https://ziroxonline111.github.io/paymenter-pterodactyl-v2/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pterodactyl 2.0 for Paymenter">
+<meta property="og:description" content="Free drop-in server extension: Paymenter works with Pterodactyl 2.0 and 1.x again.">
+<meta property="og:image" content="https://ziroxonline111.github.io/paymenter-pterodactyl-v2/github-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Pterodactyl 2.0 for Paymenter",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Linux",
+      "softwareVersion": "1.0.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "downloadUrl": "https://github.com/ziroxonline111/paymenter-pterodactyl-v2/releases/latest",
+      "author": {"@type": "Organization", "name": "Karelia Labs"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Why does Paymenter say 'The route api/application/nests could not be found'?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Pterodactyl 2.0 removed the Application API's nest endpoints. Paymenter's built-in Pterodactyl extension still calls them, so orders, upgrades and the product page fail after the panel upgrade. This extension uses the 2.0 egg and tag endpoints instead."}},
+        {"@type": "Question", "name": "Do I have to set up my products again?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No. The extension uses the same server settings and product options as the built-in one, and egg IDs do not change in the Pterodactyl 2.0 upgrade. One command switches your existing servers."}},
+        {"@type": "Question", "name": "Does it still work with Pterodactyl 1.x?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Yes. It detects the panel version and uses nests on 1.x and eggs and tags on 2.0, so you can install it before you upgrade the panel."}},
+        {"@type": "Question", "name": "Can customers sign in to Pterodactyl from Paymenter without a password?",
+         "acceptedAnswer": {"@type": "Answer", "text": "With the optional Karelia Bridge add-on: one-click sign-in from the service page, plus a Billing page, due-date banner and badges inside Pterodactyl 2.0."}}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root { --bg: #0d1521; --panel: #142233; --text: #e7edf4; --muted: #94a3b8; --accent: #2dd4bf; --code: #0a111b; --border: #23364b; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg: #f7fafc; --panel: #ffffff; --text: #0f172a; --muted: #475569; --accent: #0f766e; --code: #eef2f6; --border: #dbe3ec; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Inter, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 48px 16px 80px; }
+  h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 8px 0 16px; }
+  h2 { margin-top: 48px; font-size: 26px; }
+  .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .02em; }
+  .lead { font-size: 20px; color: var(--muted); }
+  pre, code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  pre { background: var(--code); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-size: 14px; }
+  code { background: var(--code); padding: 2px 6px; border-radius: 6px; font-size: .92em; }
+  pre code { background: none; padding: 0; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+  .button { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+  .primary { background: var(--accent); color: #062521; }
+  .secondary { border: 1px solid var(--border); color: var(--text); }
+  img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  a { color: var(--accent); }
+  footer { margin-top: 64px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Free and open source · MIT</div>
+  <h1>Pterodactyl 2.0 for Paymenter</h1>
+  <p class="lead">A drop-in Paymenter server extension that works with Pterodactyl 2.0 and Pterodactyl 1.x. Install it before or after you upgrade the panel; nothing changes for your customers.</p>
+  <div class="buttons">
+    <a class="button primary" href="https://github.com/ziroxonline111/paymenter-pterodactyl-v2/releases/latest">Download</a>
+    <a class="button secondary" href="https://github.com/ziroxonline111/paymenter-pterodactyl-v2">Source on GitHub</a>
+  </div>
+
+  <h2>The error this fixes</h2>
+  <p>Pterodactyl 2.0 removed the Application API's nest endpoints. Paymenter's built-in Pterodactyl extension still calls them, so after the panel upgrade new orders, upgrades and the product page fail with:</p>
+  <pre><code>The route api/application/nests/1/eggs/1 could not be found.</code></pre>
+  <p>The same message appears as <code>The route api/application/nests could not be found</code> on the product page. Pterodactyl's own upgrade guide tells you to update your billing module before upgrading. For Paymenter, this is that update.</p>
+
+  <h2>What it does</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Pterodactyl 1.x and 2.0</strong> from the same settings; the version is detected automatically.</li>
+      <li><strong>Your products keep working.</strong> Same server settings and product options as the built-in extension. Egg IDs do not change in the 2.0 upgrade.</li>
+      <li><strong>Eggs by tag</strong> on 2.0, preselected from the nest a 1.x product used.</li>
+      <li><strong>Node reservation tags</strong> for automatic deployment on 2.0.</li>
+      <li>Locations, fixed nodes, port arrays, port ranges, dedicated IPs, upgrades, suspend and terminate as before, with clearer error messages.</li>
+    </ul>
+  </div>
+  <img src="paymenter-product-egg-tag.png" alt="Paymenter product page with the Egg tag and Egg fields for a Pterodactyl 2.0 server" width="1140" height="620">
+
+  <h2>Install</h2>
+  <ol>
+    <li>Copy the <code>Pterodactyl2</code> folder to <code>extensions/Servers/</code> in Paymenter.</li>
+    <li>Switch your existing Pterodactyl servers with one command (settings, products and services stay):</li>
+  </ol>
+  <pre><code>php artisan tinker --execute="App\Models\Server::where('extension','Pterodactyl')->update(['extension'=>'Pterodactyl2']);"</code></pre>
+  <p>Docker: prefix the command with <code>docker compose exec paymenter</code>. To go back, swap the two names.</p>
+
+  <h2>Upgrading Pterodactyl to 2.0, in order</h2>
+  <table>
+    <tr><th>Step</th><th>Where</th></tr>
+    <tr><td>1. Install this extension and switch your servers</td><td>Paymenter, while the panel is still on 1.x</td></tr>
+    <tr><td>2. Upgrade the panel with the official guide</td><td><a href="https://docs.pterodactyl.io/v2/upgrading/upgrading-from-v1">docs.pterodactyl.io</a></td></tr>
+    <tr><td>3. Test Connection on the server</td><td>Paymenter → Admin → Servers</td></tr>
+    <tr><td>4. Open one product and check the egg</td><td>Paymenter → Admin → Products → Server</td></tr>
+  </table>
+
+  <h2>Want one-click sign-in and billing inside the panel?</h2>
+  <p><strong>Karelia Bridge</strong> is the optional add-on for Paymenter and Pterodactyl 2.0. Customers click <em>Open control panel</em> in Paymenter and land on their server, signed in. Every server gets a Billing page with the next due date and unpaid invoices, and a banner above the console before payment is due.</p>
+  <img src="panel-billing.png" alt="Billing page inside Pterodactyl 2.0 showing the plan, price, next due date and an unpaid invoice with a Pay now button" width="1440" height="560">
+  <p>Coming soon. <a href="https://github.com/ziroxonline111/paymenter-pterodactyl-v2">Watch the repository's releases</a> to hear when it is out.</p>
+
+  <h2>FAQ</h2>
+  <div class="card">
+    <p><strong>Do I have to set up my products again?</strong><br>No. One command switches your servers; products and services stay as they are.</p>
+    <p><strong>Does it still work with Pterodactyl 1.x?</strong><br>Yes. It uses nests on 1.x and eggs and tags on 2.0.</p>
+    <p><strong>Which API key permissions does it need?</strong><br>Read and write on servers, users, nodes, locations, allocations and eggs, like the built-in extension. Read access to tags on 2.0 adds the tag filter.</p>
+    <p><strong>Is it affiliated with Paymenter or Pterodactyl?</strong><br>No. It is an independent extension; the names describe compatibility.</p>
+  </div>
+
+  <footer>© 2026 Karelia Labs · MIT License · Based on Paymenter's built-in Pterodactyl extension (MIT)</footer>
+</main>
+</body>
+</html>
