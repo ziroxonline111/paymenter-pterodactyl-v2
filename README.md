@@ -14,6 +14,8 @@ This extension fixes that. It detects the panel version on its own and uses eggs
 
 Free and open source (MIT). Tested against Pterodactyl v2.0.0-beta.2, Pterodactyl v1.15.1 and Paymenter v1.5.9.
 
+Download from the [GitHub releases](https://github.com/ziroxonline111/paymenter-pterodactyl-v2/releases/latest) or the [SourceXchange listing](https://www.sourcexchange.net/products/pterodactyl-2-for-paymenter). Both have the same release zip.
+
 ## What it does
 
 - **Works with Pterodactyl 1.x and 2.0** from the same settings. The version is detected automatically (and cached for 10 minutes).
@@ -25,7 +27,7 @@ Free and open source (MIT). Tested against Pterodactyl v2.0.0-beta.2, Pterodacty
 
 ## Install
 
-1. Download the latest release and copy the `Pterodactyl2` folder to `extensions/Servers/` in your Paymenter directory, so that you have `extensions/Servers/Pterodactyl2/Pterodactyl2.php`.
+1. Download the latest release (GitHub or SourceXchange) and copy the `Pterodactyl2` folder to `extensions/Servers/` in your Paymenter directory, so that you have `extensions/Servers/Pterodactyl2/Pterodactyl2.php`.
    - Docker: copy it into the `extensions/Servers/` folder of the volume or bind mount that holds `/app/extensions`.
 2. In Paymenter, go to **Admin → Servers**. Your existing Pterodactyl server stays as it is for now.
 
