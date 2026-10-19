@@ -70,6 +70,8 @@ Create the key in Pterodactyl under **Admin → API** (Application API). It need
 | `The port array needs a SERVER_PORT entry` | The product's port array must name `SERVER_PORT`. |
 | Product page shows no eggs | Click **Test Connection** on the server once. The panel version is cached for 10 minutes. |
 
+Step-by-step guide with the background: [Fix Paymenter after upgrading to Pterodactyl 2.0](https://karelialabs.com/guides/paymenter-pterodactyl-2-nests-not-found).
+
 ## Karelia Bridge (optional, paid)
 
 The same team makes **Karelia Bridge**, an add-on for Paymenter and Pterodactyl 2.0:
@@ -78,7 +80,7 @@ The same team makes **Karelia Bridge**, an add-on for Paymenter and Pterodactyl 
 - **Billing inside the panel.** A *Billing* page on every server shows the next due date, the price and unpaid invoices with a *Pay now* button.
 - **Warnings where customers look.** A banner above the console before an invoice is due and when the server is about to be suspended, and a *Due in 2 d* badge on the server list.
 
-It uses Pterodactyl 2.0's official extension system, so no panel files are edited. Details and download: https://pureimage.gumroad.com/l/karelia-bridge
+It uses Pterodactyl 2.0's official extension system, so no panel files are edited. Details: https://karelialabs.com/tools/karelia-bridge · Download: https://pureimage.gumroad.com/l/karelia-bridge
 
 ## License
 
