@@ -72,6 +72,14 @@ To switch back, swap the two names in the command.
 
 Create the key in Pterodactyl under **Admin → API** (Application API). It needs read and write access to servers, users, nodes, locations, allocations and eggs, the same as the built-in extension. On Pterodactyl 2.0, read access to tags adds the tag filter; without it the product page lists every egg.
 
+## API key encryption on Paymenter 1.5.9
+
+Paymenter 1.5.9 has a bug in **Admin → Servers → New**: the first save stores the server's settings without their "encrypted" flag, so the API key stays in plain text in the database until the server is saved a second time. It affects every server extension, the built-in Pterodactyl extension too, and **Admin → Gateways → New** has the same bug. Paymenter fixed it on its master branch on 2026-10-16 ([commit ddf592a](https://github.com/Paymenter/Paymenter/commit/ddf592a87f346df4898e242918945bfaca6abaa7)); it is not in a release yet.
+
+- **Since 1.0.2** this extension encrypts the key right after the server is created.
+- **Servers created earlier** (with an older version of this extension, or with the built-in extension and then switched): open the server under **Admin → Servers** and click **Save changes** once. Paymenter's edit form stores the key encrypted. The extension cannot do this for existing servers: Paymenter calls its setup hook only when a server is created.
+- **Audit log:** on Paymenter 1.5.9 the audit entry of the first save still holds the key in plain text, also with 1.0.2 (**Admin → System → Audits**, the "created" entry of the `api_key` setting). Neither this extension nor a second save changes that entry. If other people can read your audit log or database, delete the entry, or create a new API key in Pterodactyl, paste it into the server and save.
+
 ## Upgrading the panel to 2.0
 
 1. Install this extension and switch your servers (above) while the panel is still on 1.x. Nothing changes yet.

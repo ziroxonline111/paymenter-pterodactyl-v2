@@ -28,7 +28,7 @@ use Illuminate\Support\Str;
 #[ExtensionMeta(
     name: 'Pterodactyl 2.0',
     description: 'Pterodactyl 1.x and 2.0 server extension. Drop-in replacement for the built-in Pterodactyl extension.',
-    version: '1.0.1',
+    version: '1.0.2',
     author: 'Karelia Labs',
     url: 'https://github.com/ziroxonline111/paymenter-pterodactyl-v2',
     icon: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxMDUyOUYiLz48dGV4dCB4PSIzMiIgeT0iNDEiIGZvbnQtZmFtaWx5PSJBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UDI8L3RleHQ+PC9zdmc+',
@@ -62,6 +62,19 @@ class Pterodactyl2 extends Server
                 'encrypted' => true,
             ],
         ];
+    }
+
+    /**
+     * Paymenter calls this after a server is created in the admin. Paymenter 1.5.9 saves that first form without
+     * the settings' "encrypted" flag (a later save sets it), so the key is encrypted here right away.
+     */
+    public function enabled(\App\Models\Server $server): void
+    {
+        $setting = $server->settings()->where('key', 'api_key')->first();
+        if ($setting && !$setting->encrypted) {
+            $setting->encrypted = true;
+            $setting->save();
+        }
     }
 
     public function testConfig(): bool|string

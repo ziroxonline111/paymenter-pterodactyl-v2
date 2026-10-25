@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 (2026-10-25)
+
+- Fixed: on Paymenter 1.5.9, a server created under Admin → Servers → New kept its API key in plain text in the database until it was saved a second time. Paymenter's create form saves the settings without their `encrypted` flag (fixed on Paymenter's master branch, not released yet). The extension now encrypts the key right after the server is created.
+- Servers created before this version: open the server under Admin → Servers and click Save changes once to store the key encrypted. The README also explains the audit log entry Paymenter 1.5.9 writes on the first save.
+- No other changes; products and services need no update.
+
 ## 1.0.1 (2026-10-25)
 
 - Documentation: Paymenter added basic Pterodactyl 2.0 support to its master branch (not released yet). The README now says which Paymenter versions need this extension and what it still adds over the built-in one: every page of eggs, nodes and locations, the egg tag filter, node reservation tags and readable errors.
