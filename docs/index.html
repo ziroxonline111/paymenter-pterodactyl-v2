@@ -20,7 +20,7 @@
       "name": "Pterodactyl 2.0 for Paymenter",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Linux",
-      "softwareVersion": "1.0.0",
+      "softwareVersion": "1.0.1",
       "license": "https://opensource.org/licenses/MIT",
       "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
       "downloadUrl": "https://github.com/ziroxonline111/paymenter-pterodactyl-v2/releases/latest",
@@ -86,6 +86,9 @@
   <p>Pterodactyl 2.0 removed the Application API's nest endpoints. Paymenter's built-in Pterodactyl extension still calls them, so after the panel upgrade new orders, upgrades and the product page fail with:</p>
   <pre><code>The route api/application/nests/1/eggs/1 could not be found.</code></pre>
   <p>The same message appears as <code>The route api/application/nests could not be found</code> on the product page. Pterodactyl's own upgrade guide tells you to update your billing module before upgrading. For Paymenter, this is that update.</p>
+
+  <h2>Paymenter's own 2.0 support is coming</h2>
+  <p>Paymenter added basic Pterodactyl 2.0 support to its master branch on 2026-10-23 (<a href="https://github.com/Paymenter/Paymenter/commit/c1bd74393b327083a33db4fcb42a3272b09193d9">commit c1bd743</a>). It is not in a release yet, so Paymenter 1.5.9 still needs this extension. Once the next Paymenter version is out, the built-in extension is enough for stores with fewer than 50 eggs and no tags; switch back with the same command and the names swapped. This extension still reads every page of eggs, nodes and locations (the built-in code reads only the first page of each list, 50 items by default), and adds the egg tag filter, node reservation tags and readable errors.</p>
 
   <h2>What it does</h2>
   <div class="card">

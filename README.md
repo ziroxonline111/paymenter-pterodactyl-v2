@@ -16,6 +16,23 @@ Free and open source (MIT). Tested against Pterodactyl v2.0.0-beta.2, Pterodacty
 
 Download from the [GitHub releases](https://github.com/ziroxonline111/paymenter-pterodactyl-v2/releases/latest) or the [SourceXchange listing](https://www.sourcexchange.net/products/pterodactyl-2-for-paymenter). Both have the same release zip.
 
+## Paymenter's own 2.0 support is coming
+
+Paymenter added basic Pterodactyl 2.0 support to its master branch on 2026-10-23 ([commit c1bd743](https://github.com/Paymenter/Paymenter/commit/c1bd74393b327083a33db4fcb42a3272b09193d9)). It is not in a release yet, so Paymenter 1.5.9 still needs this extension. Once the next Paymenter version is out:
+
+- **Fewer than 50 eggs and no tags?** The built-in extension will be enough. Switch back with the same command and the two names swapped.
+- **What this extension still adds:** it reads every page of eggs, nodes and locations (the built-in code reads only the first page of each list, 50 items by default), the egg tag filter, node reservation tags and readable error messages.
+
+## Free vs Karelia Bridge
+
+| | This extension (free) | [Karelia Bridge](https://karelialabs.com/tools/karelia-bridge) (paid add-on) |
+|---|---|---|
+| Create, suspend, upgrade and terminate servers on 2.0 and 1.x | ✅ | uses this extension |
+| Egg tag filter and node reservation tags on 2.0 | ✅ | ✅ |
+| One click from Paymenter into the server, already signed in | | ✅ |
+| Billing page in the panel: plan, next due date, unpaid invoices, Pay now | | ✅ |
+| Banner before payment is due, badges on the server list | | ✅ |
+
 ## What it does
 
 - **Works with Pterodactyl 1.x and 2.0** from the same settings. The version is detected automatically (and cached for 10 minutes).
@@ -83,6 +100,10 @@ The same team makes **Karelia Bridge**, an add-on for Paymenter and Pterodactyl 
 - **Warnings where customers look.** A banner above the console before an invoice is due and when the server is about to be suspended, and a *Due in 2 d* badge on the server list.
 
 It uses Pterodactyl 2.0's official extension system, so no panel files are edited. Details: https://karelialabs.com/tools/karelia-bridge · Download: https://karelialabs.gumroad.com/l/karelia-bridge
+
+## Feedback
+
+Found a bug or a panel it does not work with? [Open an issue](https://github.com/ziroxonline111/paymenter-pterodactyl-v2/issues). Did it save you an evening? A short review on [SourceXchange](https://www.sourcexchange.net/products/pterodactyl-2-for-paymenter) helps other hosts find it.
 
 ## License
 
