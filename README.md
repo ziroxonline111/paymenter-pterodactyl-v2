@@ -109,6 +109,15 @@ The same team makes **Karelia Bridge**, an add-on for Paymenter and Pterodactyl 
 
 It uses Pterodactyl 2.0's official extension system, so no panel files are edited. Details: https://karelialabs.com/tools/karelia-bridge · Download: https://karelialabs.gumroad.com/l/karelia-bridge
 
+## More for Paymenter hosts
+
+From the same team, each tested on Paymenter 1.5.9 with Pterodactyl 1.x and 2.0:
+
+- **[Auto Stock](https://www.sourcexchange.net/products/auto-stock-for-paymenter)** ($4.99): product stock follows the servers that still fit on your nodes, so a full node shows as out of stock instead of taking an order that fails to deploy.
+- **[Free Trials](https://www.sourcexchange.net/products/free-trials-for-paymenter)** ($12.99): 24-hour or 3-day trial servers, one per person (account, email aliases, IP), with a reminder email and an "Upgrade and keep my server" button.
+- **[Pay All Invoices](https://www.sourcexchange.net/products/pay-all-invoices-for-paymenter)** (free): customers pay every unpaid invoice in one checkout, with one gateway fee.
+- **[Sign in with Paymenter](https://www.sourcexchange.net/products/sign-in-with-paymenter-pterodactyl-v2)** (free): a "Sign in with Paymenter" button on your Pterodactyl 2.0 login page.
+
 ## Feedback
 
 Found a bug or a panel it does not work with? [Open an issue](https://github.com/ziroxonline111/paymenter-pterodactyl-v2/issues). Did it save you an evening? A short review on [SourceXchange](https://www.sourcexchange.net/products/pterodactyl-2-for-paymenter) helps other hosts find it.
