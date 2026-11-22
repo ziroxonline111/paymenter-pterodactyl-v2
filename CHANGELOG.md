@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3 (2026-11-22)
+
+- Two lines at the bottom of this extension's server settings (Admin → Servers → a server that uses Pterodactyl 2.0): one names the paid add-ons by the same developer (Karelia Bridge, Auto Stock, Free Trials, Auto Ports, Cloudflare Subdomains), with a link to each; one asks for a short review on SourceXchange. The links open in a new tab. The lines are shown nowhere else and nothing is sent anywhere.
+- No other changes; servers and products need no update.
+
 ## 1.0.2 (2026-10-25)
 
 - Fixed: on Paymenter 1.5.9, a server created under Admin → Servers → New kept its API key in plain text in the database until it was saved a second time. Paymenter's create form saves the settings without their `encrypted` flag (fixed on Paymenter's master branch, not released yet). The extension now encrypts the key right after the server is created.

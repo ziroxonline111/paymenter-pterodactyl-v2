@@ -118,6 +118,11 @@ From the same team, each tested on Paymenter 1.5.9 with Pterodactyl 1.x and 2.0:
 - **[Pay All Invoices](https://www.sourcexchange.net/products/pay-all-invoices-for-paymenter)** (free): customers pay every unpaid invoice in one checkout, with one gateway fee.
 - **[Sign in with Paymenter](https://www.sourcexchange.net/products/sign-in-with-paymenter-pterodactyl-v2)** (free): a "Sign in with Paymenter" button on your Pterodactyl 2.0 login page.
 
+For the Pterodactyl 2.0 panel itself (official extension system):
+
+- **[Auto Ports](https://www.sourcexchange.net/products/auto-ports-pterodactyl-v2)** ($7.99): hands out extra ports to every new server automatically, by rules per egg and node.
+- **[Cloudflare Subdomains & SRV](https://www.sourcexchange.net/products/cloudflare-subdomains-pterodactyl-v2)** ($9.99): customer subdomains like play.example.com in Cloudflare DNS, with SRV records for Minecraft.
+
 ## Feedback
 
 Found a bug or a panel it does not work with? [Open an issue](https://github.com/ziroxonline111/paymenter-pterodactyl-v2/issues). Did it save you an evening? A short review on [SourceXchange](https://www.sourcexchange.net/products/pterodactyl-2-for-paymenter) helps other hosts find it.

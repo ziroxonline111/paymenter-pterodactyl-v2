@@ -28,7 +28,7 @@ use Illuminate\Support\Str;
 #[ExtensionMeta(
     name: 'Pterodactyl 2.0',
     description: 'Pterodactyl 1.x and 2.0 server extension. Drop-in replacement for the built-in Pterodactyl extension.',
-    version: '1.0.2',
+    version: '1.0.3',
     author: 'Karelia Labs',
     url: 'https://github.com/ziroxonline111/paymenter-pterodactyl-v2',
     icon: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxMDUyOUYiLz48dGV4dCB4PSIzMiIgeT0iNDEiIGZvbnQtZmFtaWx5PSJBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UDI8L3RleHQ+PC9zdmc+',
@@ -41,9 +41,36 @@ class Pterodactyl2 extends Server
     /** Optional add-on that adds single sign-on and billing info to the panel. */
     private const BRIDGE_CLASS = 'Paymenter\\Extensions\\Others\\KareliaBridge\\KareliaBridge';
 
+    /** The reviews tab of this extension's page on SourceXchange. */
+    public const REVIEW_URL = 'https://www.sourcexchange.net/products/pterodactyl-2-for-paymenter#reviews';
+
+    /** Paid add-ons by the same developer: name => [page, what it does]. Karelia Bridge is left out once it is installed. */
+    public const ADDONS = [
+        'Karelia Bridge' => ['https://karelialabs.com/tools/karelia-bridge', 'one-click sign-in and a billing page inside the Pterodactyl 2.0 panel'],
+        'Auto Stock' => ['https://www.sourcexchange.net/products/auto-stock-for-paymenter', 'full nodes show as out of stock'],
+        'Free Trials' => ['https://www.sourcexchange.net/products/free-trials-for-paymenter', 'trial servers, one per person'],
+        'Auto Ports' => ['https://www.sourcexchange.net/products/auto-ports-pterodactyl-v2', 'extra ports for every new server, Pterodactyl 2.0'],
+        'Cloudflare Subdomains' => ['https://www.sourcexchange.net/products/cloudflare-subdomains-pterodactyl-v2', 'customer subdomains and SRV records, Pterodactyl 2.0'],
+    ];
+
+    /** One line of links to the paid add-ons. Text and links only: nothing is loaded and nothing is sent anywhere. */
+    public static function addonsLine(): string
+    {
+        $items = [];
+        foreach (self::ADDONS as $name => [$url, $what]) {
+            if ($name === 'Karelia Bridge' && class_exists(self::BRIDGE_CLASS)) {
+                continue;
+            }
+            $items[] = '<a href="' . e($url) . '" target="_blank" rel="noopener noreferrer" class="text-primary-600">' . e($name) . '</a> (' . e($what) . ')';
+        }
+
+        return 'Sold separately by the same developer: ' . implode(', ', $items) . '.';
+    }
+
     public function getConfig($values = []): array
     {
         // The keys match the built-in extension, so an existing server can switch over without re-entering anything.
+        // The last two entries are text only: two lines under this extension's own server settings, nothing is sent anywhere.
         return [
             [
                 'name' => 'host',
@@ -60,6 +87,16 @@ class Pterodactyl2 extends Server
                 'description' => 'Application API key (Admin → API). Read and write access to servers, users, nodes, locations, allocations and eggs.',
                 'required' => true,
                 'encrypted' => true,
+            ],
+            [
+                'name' => 'add_ons',
+                'type' => 'placeholder',
+                'label' => new HtmlString(self::addonsLine()),
+            ],
+            [
+                'name' => 'review',
+                'type' => 'placeholder',
+                'label' => new HtmlString('Is this extension useful? <a href="' . e(self::REVIEW_URL) . '" target="_blank" rel="noopener noreferrer" class="text-primary-600">A short review on SourceXchange</a> helps others find it.'),
             ],
         ];
     }
